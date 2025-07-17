@@ -1,13 +1,8 @@
-import MetaTrader5 as mt5
+from MetaTrader5 import initialize, shutdown, version
 
-if not mt5.initialize():
-    print("❌ Initialization failed")
-    quit()
-
-account = mt5.account_info()
-if account is not None:
-    print(f"✅ Connected to account #{account.login}")
+if initialize():
+    print("✅ MT5 initialized successfully!")
+    print("MT5 version:", version())
+    shutdown()
 else:
-    print("❌ Could not fetch account info")
-
-mt5.shutdown()
+    print("❌ Failed to initialize MT5")
